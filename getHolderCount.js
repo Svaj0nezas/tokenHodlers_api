@@ -2,6 +2,9 @@ const { ethers } = require("ethers");
 const sqlite3 = require("sqlite3");
 const { open } = require("sqlite");
 const express = require("express");
+const cors = require("cors");
+
+// Enable CORS
 
 
 // constants
@@ -123,10 +126,12 @@ async function main() {
   console.log("Listening for Transfer events...");
 
   const app = express();
+  app.use(cors());
   app.get("/holders", async (req, res) => {
     try {
       const holderCount = await getHolderCount();
-      res.json({ holders: holderCount });
+      res.json({ contract: TOKEN_ADDRESS,
+                holders: holderCount });
     } catch (error) {
       console.error("Error fetching holder count:", error);
       res.status(500).json({ error: "Internal server error" });
