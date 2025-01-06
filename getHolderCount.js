@@ -1,7 +1,7 @@
-import { ethers } from "ethers";
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
-import express from "express";
+const { ethers } = require("ethers");
+const sqlite3 = require("sqlite3");
+const { open } = require("sqlite");
+const express = require("express");
 
 // constants
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
