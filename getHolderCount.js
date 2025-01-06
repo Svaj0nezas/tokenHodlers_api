@@ -8,7 +8,7 @@ const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const PORT = 6969
 
 // Alchemy socket settings
-const TOKEN_ADDRESS = '0x6004cb64D61bB30F6fD57869908B0a7b54284E60';
+const TOKEN_ADDRESS = '0x8b2c510a0a1909782f37f72d225e3a9e31abc1c0';
 const wss = 'wss://berachain-bartio.g.alchemy.com/v2/4aJs2xvle8qE9cLlDOHmA3UZw_-zJhRm'
 const sock = new ethers.WebSocketProvider(wss)
 
