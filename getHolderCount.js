@@ -64,7 +64,7 @@ async function main() {
     const logs = await sock.getLogs({
       address: TOKEN_ADDRESS,
       topics: [ethers.id("Transfer(address,address,uint256)")],
-      fromBlock: latestBlock - 100,
+      fromBlock: latestBlock - 100000,
       toBlock: latestBlock,
     });
 
