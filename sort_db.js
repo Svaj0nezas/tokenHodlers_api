@@ -1,24 +1,26 @@
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
+const sqlite3 = require("sqlite3");
+const { open } = require("sqlite");
 
-async function sortDatabase() {
-  const db = await open({
-    filename: "./token_holders.db",
-    driver: sqlite3.Database,
-  });
+async function main() {
+  try {
+    const db = await open({
+      filename: "./token_holders.db",
+      driver: sqlite3.Database,
+    });
 
-  await db.exec(`
-    CREATE TEMPORARY TABLE sorted AS
-    SELECT * FROM holders ORDER BY balance DESC;
-    DELETE FROM holders;
-    INSERT INTO holders SELECT * FROM sorted;
-    DROP TABLE sorted;
-  `);
+    await db.exec(`
+      CREATE TEMPORARY TABLE sorted AS
+      SELECT * FROM holders ORDER BY balance DESC;
+      DELETE FROM holders;
+      INSERT INTO holders SELECT * FROM sorted;
+      DROP TABLE sorted;
+    `);
 
-  console.log("Database sorted by balance in descending order.");
-  await db.close();
+    console.log("Database sorted by balance in descending order.");
+    await db.close();
+  } catch (error) {
+    console.error("Error sorting database:", error);
+  }
 }
 
-sortDatabase().catch((error) => {
-  console.error("Error sorting database:", error);
-});
+main();
